@@ -379,9 +379,9 @@ export default function ProduseClient() {
 
       {/* PRODUSE */}
       <section className="bg-zinc-50 py-10 sm:py-16">
-        <div className="mx-auto max-w-7xl px-5 sm:px-6">
+        <div className="mx-auto max-w-7xl px-3 sm:px-6">
 
-          <div className="mb-7 flex flex-col gap-2 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
+          <div className="mb-7 flex flex-col gap-2 px-2 sm:mb-10 sm:flex-row sm:items-end sm:justify-between sm:px-0">
             <div>
               <p className="text-xs font-bold uppercase tracking-widest text-blue-600 sm:text-sm">
                 Produsele noastre
@@ -403,14 +403,17 @@ export default function ProduseClient() {
           </div>
 
           {filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
+
               {filteredProducts.map((product, index) => (
                 <article
                   key={product.name}
-                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+                  className="group flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white transition duration-300 hover:-translate-y-1 hover:shadow-xl"
                 >
 
-                  <div className="relative h-52 overflow-hidden bg-white sm:h-56">
+                  {/* IMAGINE */}
+                  <div className="relative h-36 overflow-hidden bg-white sm:h-56">
+
                     <Image
                       src={product.image}
                       alt={product.name}
@@ -418,12 +421,12 @@ export default function ProduseClient() {
                       height={450}
                       loading={index === 0 ? "eager" : "lazy"}
                       fetchPriority={index === 0 ? "high" : "auto"}
-                      className="h-full w-full object-contain p-6 transition duration-500 group-hover:scale-105 sm:p-4"
+                      className="h-full w-full object-contain p-3 transition duration-500 group-hover:scale-105 sm:p-4"
                     />
 
                     {product.badge && (
                       <span
-                        className={`absolute left-3 top-3 rounded-full px-3 py-1.5 text-xs font-bold ${
+                        className={`absolute left-2 top-2 rounded-full px-2.5 py-1 text-[10px] font-bold sm:left-3 sm:top-3 sm:px-3 sm:py-1.5 sm:text-xs ${
                           product.badge === "Ofertă"
                             ? "bg-red-500 text-white"
                             : product.badge === "Nou"
@@ -434,47 +437,55 @@ export default function ProduseClient() {
                         {product.badge}
                       </span>
                     )}
+
                   </div>
 
-                  <div className="flex flex-1 flex-col p-5">
-                    <p className="text-xs font-bold uppercase tracking-wider text-blue-600">
+                  {/* CONTENT */}
+                  <div className="flex flex-1 flex-col p-3 sm:p-5">
+
+                    <p className="truncate text-[9px] font-bold uppercase tracking-wider text-blue-600 sm:text-xs">
                       {product.category}
                     </p>
 
-                    <h3 className="mt-2 text-lg font-bold leading-snug">
+                    <h3 className="mt-1.5 line-clamp-2 text-sm font-bold leading-snug sm:mt-2 sm:text-lg">
                       {product.name}
                     </h3>
 
-                    <p className="mt-3 flex-1 text-sm leading-6 text-zinc-600">
+                    <p className="mt-3 hidden flex-1 text-sm leading-6 text-zinc-600 sm:block">
                       {product.description}
                     </p>
 
-                    <div className="mt-5 flex flex-wrap items-end gap-2">
-                      <span className="text-xl font-bold text-zinc-950">
+                    <div className="mt-3 flex flex-wrap items-end gap-1.5 sm:mt-5 sm:gap-2">
+
+                      <span className="text-base font-bold text-zinc-950 sm:text-xl">
                         {product.price}
                       </span>
 
                       {product.oldPrice && (
-                        <span className="mb-0.5 text-sm text-zinc-400 line-through">
+                        <span className="text-[11px] text-zinc-400 line-through sm:mb-0.5 sm:text-sm">
                           {product.oldPrice}
                         </span>
                       )}
+
                     </div>
 
                     <a
                       href="/contact"
-                      className="mt-5 flex w-full items-center justify-center rounded-xl bg-zinc-950 px-4 py-3 text-sm font-semibold transition hover:bg-blue-600"
+                      className="mt-3 flex w-full items-center justify-center rounded-xl bg-zinc-950 px-2 py-2.5 text-center text-xs font-semibold transition hover:bg-blue-600 sm:mt-5 sm:px-4 sm:py-3 sm:text-sm"
                       style={{ color: "#ffffff" }}
                     >
                       Solicită produsul
                     </a>
+
                   </div>
 
                 </article>
               ))}
+
             </div>
           ) : (
             <div className="rounded-3xl border border-zinc-200 bg-white px-5 py-16 text-center sm:px-6 sm:py-20">
+
               <h3 className="text-2xl font-bold">
                 Nu am găsit produsul
               </h3>
@@ -490,6 +501,7 @@ export default function ProduseClient() {
               >
                 Resetează filtrele
               </button>
+
             </div>
           )}
 
