@@ -306,7 +306,8 @@ export default function ProduseClient() {
 
       {/* HERO */}
       <section className="bg-zinc-950 text-white">
-        <div className="mx-auto max-w-7xl px-5 py-14 sm:px-6 sm:py-20">
+        <div className="mx-auto max-w-7xl px-5 py-12 sm:px-6 sm:py-20">
+
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-400 sm:text-sm">
             Catalog PAPYRUS OFFICE
           </p>
@@ -318,16 +319,17 @@ export default function ProduseClient() {
             </span>
           </h1>
 
-          <p className="mt-6 max-w-2xl text-base leading-7 text-zinc-300 sm:text-lg sm:leading-8">
+          <p className="mt-5 max-w-2xl text-base leading-7 text-zinc-300 sm:mt-6 sm:text-lg sm:leading-8">
             Descoperă selecția noastră de produse de papetărie,
             instrumente de scris, accesorii și produse pentru birou.
           </p>
+
         </div>
       </section>
 
       {/* SEARCH + FILTRE */}
       <section className="sticky top-[76px] z-30 border-b border-zinc-200 bg-white/95 backdrop-blur-xl">
-        <div className="mx-auto max-w-7xl px-5 py-5 sm:px-6 sm:py-6">
+        <div className="mx-auto max-w-7xl px-5 py-4 sm:px-6 sm:py-6">
 
           <div className="relative max-w-xl">
             <Search
@@ -355,9 +357,10 @@ export default function ProduseClient() {
             )}
           </div>
 
-          {/* Pe mobil filtrele se pot derula lateral */}
-          <div className="-mx-5 mt-5 overflow-x-auto px-5 pb-1 sm:mx-0 sm:overflow-visible sm:px-0">
+          {/* FILTRE MOBILE */}
+          <div className="-mx-5 mt-4 overflow-x-auto px-5 pb-1 sm:mx-0 sm:mt-5 sm:overflow-visible sm:px-0">
             <div className="flex w-max gap-2.5 sm:w-auto sm:flex-wrap sm:gap-3">
+
               {categories.map((category) => (
                 <button
                   key={category}
@@ -372,6 +375,7 @@ export default function ProduseClient() {
                   {category}
                 </button>
               ))}
+
             </div>
           </div>
 
@@ -379,10 +383,11 @@ export default function ProduseClient() {
       </section>
 
       {/* PRODUSE */}
-      <section className="bg-zinc-50 py-12 sm:py-16">
+      <section className="bg-zinc-50 py-10 sm:py-16">
         <div className="mx-auto max-w-7xl px-5 sm:px-6">
 
-          <div className="mb-8 flex flex-col gap-2 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
+          <div className="mb-7 flex flex-col gap-2 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
+
             <div>
               <p className="text-xs font-bold uppercase tracking-widest text-blue-600 sm:text-sm">
                 Produsele noastre
@@ -397,12 +402,16 @@ export default function ProduseClient() {
 
             <p className="text-sm text-zinc-500">
               {filteredProducts.length}{" "}
-              {filteredProducts.length === 1 ? "produs găsit" : "produse găsite"}
+              {filteredProducts.length === 1
+                ? "produs găsit"
+                : "produse găsite"}
             </p>
+
           </div>
 
           {filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
+
               {filteredProducts.map((product, index) => (
                 <article
                   key={product.name}
@@ -410,7 +419,8 @@ export default function ProduseClient() {
                 >
 
                   {/* IMAGINE */}
-                  <div className="relative h-52 overflow-hidden bg-white sm:h-56">
+                  <div className="relative h-44 overflow-hidden bg-white sm:h-56">
+
                     <Image
                       src={product.image}
                       alt={product.name}
@@ -418,7 +428,7 @@ export default function ProduseClient() {
                       height={450}
                       loading={index === 0 ? "eager" : "lazy"}
                       fetchPriority={index === 0 ? "high" : "auto"}
-                      className="h-full w-full object-contain p-4 transition duration-500 group-hover:scale-105"
+                      className="h-full w-full object-contain p-3 transition duration-500 group-hover:scale-105 sm:p-4"
                     />
 
                     {product.badge && (
@@ -434,24 +444,27 @@ export default function ProduseClient() {
                         {product.badge}
                       </span>
                     )}
+
                   </div>
 
                   {/* CONTENT */}
-                  <div className="flex flex-1 flex-col p-5">
-                    <p className="text-xs font-bold uppercase tracking-wider text-blue-600">
+                  <div className="flex flex-1 flex-col p-4 sm:p-5">
+
+                    <p className="text-[11px] font-bold uppercase tracking-wider text-blue-600 sm:text-xs">
                       {product.category}
                     </p>
 
-                    <h3 className="mt-2 text-lg font-bold leading-snug">
+                    <h3 className="mt-2 text-base font-bold leading-snug sm:text-lg">
                       {product.name}
                     </h3>
 
-                    <p className="mt-3 flex-1 text-sm leading-6 text-zinc-600">
+                    <p className="mt-2 flex-1 text-sm leading-6 text-zinc-600">
                       {product.description}
                     </p>
 
-                    <div className="mt-5 flex flex-wrap items-end gap-2">
-                      <span className="text-xl font-bold text-zinc-950">
+                    <div className="mt-4 flex flex-wrap items-end gap-2 sm:mt-5">
+
+                      <span className="text-lg font-bold text-zinc-950 sm:text-xl">
                         {product.price}
                       </span>
 
@@ -460,21 +473,26 @@ export default function ProduseClient() {
                           {product.oldPrice}
                         </span>
                       )}
+
                     </div>
 
                     <a
-  href="/contact"
-  className="mt-5 flex w-full items-center justify-center rounded-xl bg-zinc-950 px-4 py-3 text-sm font-semibold transition hover:bg-blue-600"
-  style={{ color: "#ffffff" }}
->
-  Solicită produsul
-</a>
+                      href="/contact"
+                      className="mt-4 flex w-full items-center justify-center rounded-xl bg-zinc-950 px-4 py-3 text-sm font-semibold transition hover:bg-blue-600 sm:mt-5"
+                      style={{ color: "#ffffff" }}
+                    >
+                      Solicită produsul
+                    </a>
+
                   </div>
+
                 </article>
               ))}
+
             </div>
           ) : (
             <div className="rounded-3xl border border-zinc-200 bg-white px-5 py-16 text-center sm:px-6 sm:py-20">
+
               <h3 className="text-2xl font-bold">
                 Nu am găsit produsul
               </h3>
@@ -490,6 +508,7 @@ export default function ProduseClient() {
               >
                 Resetează filtrele
               </button>
+
             </div>
           )}
 
@@ -497,8 +516,8 @@ export default function ProduseClient() {
       </section>
 
       {/* CTA */}
-      <section className="bg-blue-600 py-14 text-white sm:py-16">
-        <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 sm:px-6 md:flex-row md:items-center md:justify-between">
+      <section className="bg-blue-600 py-12 text-white sm:py-16">
+        <div className="mx-auto flex max-w-7xl flex-col gap-7 px-5 sm:px-6 md:flex-row md:items-center md:justify-between">
 
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-blue-100 sm:text-sm">
@@ -517,7 +536,8 @@ export default function ProduseClient() {
 
           <a
             href="/contact"
-            className="inline-flex shrink-0 items-center justify-center rounded-xl bg-white px-6 py-3.5 font-semibold text-zinc-950 transition hover:bg-zinc-950 hover:text-white"
+            className="inline-flex shrink-0 items-center justify-center rounded-xl bg-white px-6 py-3.5 font-semibold transition hover:bg-zinc-950"
+            style={{ color: "#18181b" }}
           >
             Cere o ofertă →
           </a>
