@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
     },
 
-    sitemap: "https://papyrus-office.vercel.app/sitemap.xml",
+    sitemap: "https://papyrusoffice.store/sitemap.xml",
   };
 }

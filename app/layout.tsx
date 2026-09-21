@@ -1,12 +1,12 @@
-import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://papyrus-office.vercel.app"),
+  metadataBase: new URL("https://papyrusoffice.store"),
 
   title: {
     default: "PAPYRUS OFFICE SRL",
@@ -35,7 +35,6 @@ export const metadata: Metadata = {
   ],
 
   creator: "PAPYRUS OFFICE SRL",
-
   publisher: "PAPYRUS OFFICE SRL",
 
   robots: {
@@ -44,7 +43,7 @@ export const metadata: Metadata = {
   },
 
   alternates: {
-    canonical: "https://papyrus-office.vercel.app",
+    canonical: "https://papyrusoffice.store",
   },
 
   icons: {
@@ -55,7 +54,7 @@ export const metadata: Metadata = {
     title: "PAPYRUS OFFICE SRL",
     description:
       "Produse de papetărie, birotică și soluții pentru școală, birou și companii.",
-    url: "https://papyrus-office.vercel.app",
+    url: "https://papyrusoffice.store",
     siteName: "PAPYRUS OFFICE",
     images: [
       {
@@ -86,14 +85,14 @@ export default function RootLayout({
   return (
     <html lang="ro">
       <body className="overflow-x-hidden bg-white text-zinc-900 antialiased">
-  <Navbar />
+        <Navbar />
 
-  {children}
+        {children}
 
-  <Footer />
+        <Footer />
 
-  <Analytics />
-</body>
+        <Analytics />
+      </body>
     </html>
   );
 }
