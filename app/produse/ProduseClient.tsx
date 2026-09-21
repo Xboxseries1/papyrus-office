@@ -307,7 +307,6 @@ export default function ProduseClient() {
       {/* HERO */}
       <section className="bg-zinc-950 text-white">
         <div className="mx-auto max-w-7xl px-5 py-12 sm:px-6 sm:py-20">
-
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-400 sm:text-sm">
             Catalog PAPYRUS OFFICE
           </p>
@@ -323,7 +322,6 @@ export default function ProduseClient() {
             Descoperă selecția noastră de produse de papetărie,
             instrumente de scris, accesorii și produse pentru birou.
           </p>
-
         </div>
       </section>
 
@@ -342,7 +340,7 @@ export default function ProduseClient() {
               placeholder="Caută un produs..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full rounded-xl border border-zinc-300 bg-white py-3.5 pl-11 pr-11 text-sm text-zinc-900 outline-none transition placeholder:text-zinc-400 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 sm:text-base"
+              className="w-full rounded-xl border border-zinc-300 bg-white py-3.5 pl-11 pr-11 text-base text-zinc-900 outline-none transition placeholder:text-zinc-400 focus:border-blue-600 focus:ring-4 focus:ring-blue-100"
             />
 
             {search && (
@@ -357,10 +355,8 @@ export default function ProduseClient() {
             )}
           </div>
 
-          {/* FILTRE MOBILE */}
           <div className="-mx-5 mt-4 overflow-x-auto px-5 pb-1 sm:mx-0 sm:mt-5 sm:overflow-visible sm:px-0">
             <div className="flex w-max gap-2.5 sm:w-auto sm:flex-wrap sm:gap-3">
-
               {categories.map((category) => (
                 <button
                   key={category}
@@ -375,7 +371,6 @@ export default function ProduseClient() {
                   {category}
                 </button>
               ))}
-
             </div>
           </div>
 
@@ -387,7 +382,6 @@ export default function ProduseClient() {
         <div className="mx-auto max-w-7xl px-5 sm:px-6">
 
           <div className="mb-7 flex flex-col gap-2 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
-
             <div>
               <p className="text-xs font-bold uppercase tracking-widest text-blue-600 sm:text-sm">
                 Produsele noastre
@@ -406,21 +400,17 @@ export default function ProduseClient() {
                 ? "produs găsit"
                 : "produse găsite"}
             </p>
-
           </div>
 
           {filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
-
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
               {filteredProducts.map((product, index) => (
                 <article
                   key={product.name}
                   className="group flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white transition duration-300 hover:-translate-y-1 hover:shadow-xl"
                 >
 
-                  {/* IMAGINE */}
-                  <div className="relative h-44 overflow-hidden bg-white sm:h-56">
-
+                  <div className="relative h-52 overflow-hidden bg-white sm:h-56">
                     <Image
                       src={product.image}
                       alt={product.name}
@@ -428,7 +418,7 @@ export default function ProduseClient() {
                       height={450}
                       loading={index === 0 ? "eager" : "lazy"}
                       fetchPriority={index === 0 ? "high" : "auto"}
-                      className="h-full w-full object-contain p-3 transition duration-500 group-hover:scale-105 sm:p-4"
+                      className="h-full w-full object-contain p-6 transition duration-500 group-hover:scale-105 sm:p-4"
                     />
 
                     {product.badge && (
@@ -444,27 +434,23 @@ export default function ProduseClient() {
                         {product.badge}
                       </span>
                     )}
-
                   </div>
 
-                  {/* CONTENT */}
-                  <div className="flex flex-1 flex-col p-4 sm:p-5">
-
-                    <p className="text-[11px] font-bold uppercase tracking-wider text-blue-600 sm:text-xs">
+                  <div className="flex flex-1 flex-col p-5">
+                    <p className="text-xs font-bold uppercase tracking-wider text-blue-600">
                       {product.category}
                     </p>
 
-                    <h3 className="mt-2 text-base font-bold leading-snug sm:text-lg">
+                    <h3 className="mt-2 text-lg font-bold leading-snug">
                       {product.name}
                     </h3>
 
-                    <p className="mt-2 flex-1 text-sm leading-6 text-zinc-600">
+                    <p className="mt-3 flex-1 text-sm leading-6 text-zinc-600">
                       {product.description}
                     </p>
 
-                    <div className="mt-4 flex flex-wrap items-end gap-2 sm:mt-5">
-
-                      <span className="text-lg font-bold text-zinc-950 sm:text-xl">
+                    <div className="mt-5 flex flex-wrap items-end gap-2">
+                      <span className="text-xl font-bold text-zinc-950">
                         {product.price}
                       </span>
 
@@ -473,26 +459,22 @@ export default function ProduseClient() {
                           {product.oldPrice}
                         </span>
                       )}
-
                     </div>
 
                     <a
                       href="/contact"
-                      className="mt-4 flex w-full items-center justify-center rounded-xl bg-zinc-950 px-4 py-3 text-sm font-semibold transition hover:bg-blue-600 sm:mt-5"
+                      className="mt-5 flex w-full items-center justify-center rounded-xl bg-zinc-950 px-4 py-3 text-sm font-semibold transition hover:bg-blue-600"
                       style={{ color: "#ffffff" }}
                     >
                       Solicită produsul
                     </a>
-
                   </div>
 
                 </article>
               ))}
-
             </div>
           ) : (
             <div className="rounded-3xl border border-zinc-200 bg-white px-5 py-16 text-center sm:px-6 sm:py-20">
-
               <h3 className="text-2xl font-bold">
                 Nu am găsit produsul
               </h3>
@@ -508,7 +490,6 @@ export default function ProduseClient() {
               >
                 Resetează filtrele
               </button>
-
             </div>
           )}
 
