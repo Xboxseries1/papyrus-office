@@ -463,11 +463,12 @@ export default function ProduseClient() {
                     </div>
 
                     <a
-                      href="/contact"
-                      className="mt-5 flex w-full items-center justify-center rounded-xl bg-zinc-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-600"
-                    >
-                      Solicită produsul
-                    </a>
+  href="/contact"
+  className="mt-5 flex w-full items-center justify-center rounded-xl bg-zinc-950 px-4 py-3 text-sm font-semibold transition hover:bg-blue-600"
+  style={{ color: "#ffffff" }}
+>
+  Solicită produsul
+</a>
                   </div>
                 </article>
               ))}

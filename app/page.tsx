@@ -125,11 +125,12 @@ export default function Home() {
               </div>
 
               <a
-                href="/oferte"
-                className="mt-8 block rounded-xl bg-white px-5 py-3 text-center font-semibold text-zinc-950 transition hover:bg-blue-500 hover:text-white"
-              >
-                Descoperă oferta
-              </a>
+  href="/oferte"
+  className="mt-8 block rounded-xl bg-white px-5 py-3 text-center font-semibold transition hover:bg-blue-500"
+  style={{ color: "#18181b" }}
+>
+  Descoperă oferta
+</a>
             </div>
           </div>
 
@@ -244,11 +245,12 @@ export default function Home() {
 
             <div className="flex flex-col gap-3 sm:flex-row">
               <a
-                href="/produse"
-                className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-6 py-3.5 font-semibold text-white transition hover:bg-blue-700"
-              >
-                Vezi produsele
-              </a>
+  href="/contact"
+  className="inline-flex items-center justify-center rounded-xl border border-zinc-700 px-6 py-3.5 font-semibold transition hover:border-white"
+  style={{ color: "#ffffff" }}
+>
+  Contact
+</a>
 
               <a
                 href="/contact"
