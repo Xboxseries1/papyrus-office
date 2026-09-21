@@ -1,3 +1,10 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Oferte și pachete",
+  description:
+    "Descoperă ofertele PAPYRUS OFFICE, pachetele Student și Office, reducerile pentru comenzi mari și programul PAPYRUS Club.",
+};
 import {
   ArrowRight,
   BadgePercent,

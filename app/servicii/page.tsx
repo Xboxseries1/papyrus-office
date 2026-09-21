@@ -1,4 +1,11 @@
-import {
+
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Servicii",
+  description:
+    "Descoperă serviciile PAPYRUS OFFICE: printare, scanare, laminare, spiralare și soluții complete pentru birouri și companii.",
+};import {
   Building2,
   Copy,
   FileArchive,

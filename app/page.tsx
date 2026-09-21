@@ -1,4 +1,11 @@
-import {
+
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Papetărie, birotică și soluții pentru birou",
+  description:
+    "PAPYRUS OFFICE SRL oferă produse de papetărie, birotică, consumabile, servicii și soluții pentru școală, birou și companii.",
+};import {
   BookOpen,
   Building2,
   Check,
@@ -21,7 +28,8 @@ export default function Home() {
               Papetărie • Birotică • Soluții pentru birou
             </div>
 
-            <h1 className="text-5xl font-bold leading-tight tracking-tight md:text-6xl lg:text-7xl">
+            <h1 className="text-5xl 
+            font-bold leading-tight tracking-tight md:text-6xl lg:text-7xl">
               Idei pe hârtie.
               <span className="block text-blue-600">
                 Performanță la birou.

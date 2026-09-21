@@ -1,3 +1,10 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Despre noi",
+  description:
+    "Descoperă PAPYRUS OFFICE SRL, misiunea, viziunea, valorile și activitatea firmei de exercițiu.",
+};
 import {
   Building2,
   Check,
