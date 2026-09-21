@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
@@ -34,23 +35,18 @@ export default function Navbar() {
       <div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-6">
 
         {/* LOGO */}
-        <Link href="/" className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-600 text-lg font-bold text-white">
-            P
-          </div>
-
-          <div>
-            <p className="text-lg font-bold leading-none text-zinc-950">
-              PAPYRUS OFFICE
-            </p>
-
-            <p className="mt-1 text-xs text-zinc-500">
-              Firma de exercițiu
-            </p>
-          </div>
+        <Link href="/" className="flex items-center">
+         <Image
+  src="/images/papyrus-logo.png"
+  alt="PAPYRUS OFFICE"
+  width={665}
+  height={345}
+  priority
+  className="h-auto w-[125px] object-contain sm:w-[145px]"
+/>
         </Link>
 
-        {/* DESKTOP */}
+        {/* DESKTOP NAV */}
         <nav className="hidden items-center gap-7 lg:flex">
           {navigation.map((item) => {
             const active =
@@ -73,12 +69,13 @@ export default function Navbar() {
             );
           })}
 
-          <Link
-            href="/contact"
-            className="rounded-xl bg-zinc-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-600"
-          >
-            Contact
-          </Link>
+       <Link
+  href="/contact"
+  className="rounded-xl bg-zinc-950 px-5 py-3 text-sm font-semibold transition hover:bg-blue-600"
+  style={{ color: "#ffffff" }}
+>
+  Contact
+</Link>
         </nav>
 
         {/* MOBILE BUTTON */}

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { Search, X } from "lucide-react";
 import { useMemo, useState } from "react";
 
 const products = [
@@ -273,92 +274,121 @@ const categories = [
   "Tehnologie",
 ];
 
-export default function ProdusePage() {
+export default function ProduseClient() {
   const [selectedCategory, setSelectedCategory] = useState("Toate");
   const [search, setSearch] = useState("");
 
   const filteredProducts = useMemo(() => {
+    const query = search.trim().toLowerCase();
+
     return products.filter((product) => {
       const matchesCategory =
         selectedCategory === "Toate" ||
         product.category === selectedCategory;
 
       const matchesSearch =
-        product.name.toLowerCase().includes(search.toLowerCase()) ||
-        product.description.toLowerCase().includes(search.toLowerCase());
+        !query ||
+        product.name.toLowerCase().includes(query) ||
+        product.description.toLowerCase().includes(query) ||
+        product.category.toLowerCase().includes(query);
 
       return matchesCategory && matchesSearch;
     });
   }, [selectedCategory, search]);
 
+  function resetFilters() {
+    setSelectedCategory("Toate");
+    setSearch("");
+  }
+
   return (
-    <main className="min-h-screen bg-white text-zinc-900">
+    <main className="min-h-screen overflow-hidden bg-white text-zinc-900">
 
       {/* HERO */}
-      <section className="border-b border-zinc-800 bg-zinc-950 text-white">
-        <div className="mx-auto max-w-7xl px-6 py-20">
-          <p className="text-sm font-bold uppercase tracking-[0.2em] text-blue-400">
+      <section className="bg-zinc-950 text-white">
+        <div className="mx-auto max-w-7xl px-5 py-14 sm:px-6 sm:py-20">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-400 sm:text-sm">
             Catalog PAPYRUS OFFICE
           </p>
 
-          <h1 className="mt-4 max-w-3xl text-5xl font-bold tracking-tight md:text-6xl">
+          <h1 className="mt-4 max-w-3xl text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl md:text-6xl">
             Produse pentru școală,
             <span className="block text-blue-400">
               birou și organizare.
             </span>
           </h1>
 
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-300">
+          <p className="mt-6 max-w-2xl text-base leading-7 text-zinc-300 sm:text-lg sm:leading-8">
             Descoperă selecția noastră de produse de papetărie,
             instrumente de scris, accesorii și produse pentru birou.
           </p>
         </div>
       </section>
 
-      {/* FILTRE */}
-      <section className="border-b border-zinc-200 bg-white">
-        <div className="mx-auto max-w-7xl px-6 py-8">
+      {/* SEARCH + FILTRE */}
+      <section className="sticky top-[76px] z-30 border-b border-zinc-200 bg-white/95 backdrop-blur-xl">
+        <div className="mx-auto max-w-7xl px-5 py-5 sm:px-6 sm:py-6">
 
-          <div className="max-w-xl">
+          <div className="relative max-w-xl">
+            <Search
+              size={19}
+              className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400"
+            />
+
             <input
               type="text"
               placeholder="Caută un produs..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full rounded-2xl border border-zinc-300 bg-white px-5 py-4 text-zinc-900 outline-none transition placeholder:text-zinc-400 focus:border-blue-600 focus:ring-4 focus:ring-blue-100"
+              className="w-full rounded-xl border border-zinc-300 bg-white py-3.5 pl-11 pr-11 text-sm text-zinc-900 outline-none transition placeholder:text-zinc-400 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 sm:text-base"
             />
+
+            {search && (
+              <button
+                type="button"
+                onClick={() => setSearch("")}
+                aria-label="Șterge căutarea"
+                className="absolute right-3 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-lg text-zinc-500 transition hover:bg-zinc-100 hover:text-zinc-900"
+              >
+                <X size={17} />
+              </button>
+            )}
           </div>
 
-          <div className="mt-6 flex flex-wrap gap-3">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`rounded-full px-5 py-2.5 text-sm font-semibold transition ${
-                  selectedCategory === category
-                    ? "bg-blue-600 text-white"
-                    : "border border-zinc-200 bg-white text-zinc-700 hover:border-blue-600 hover:text-blue-600"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
+          {/* Pe mobil filtrele se pot derula lateral */}
+          <div className="-mx-5 mt-5 overflow-x-auto px-5 pb-1 sm:mx-0 sm:overflow-visible sm:px-0">
+            <div className="flex w-max gap-2.5 sm:w-auto sm:flex-wrap sm:gap-3">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  type="button"
+                  onClick={() => setSelectedCategory(category)}
+                  className={`whitespace-nowrap rounded-full px-4 py-2.5 text-sm font-semibold transition sm:px-5 ${
+                    selectedCategory === category
+                      ? "bg-blue-600 text-white shadow-sm"
+                      : "border border-zinc-200 bg-white text-zinc-700 hover:border-blue-600 hover:text-blue-600"
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
           </div>
 
         </div>
       </section>
 
       {/* PRODUSE */}
-      <section className="bg-zinc-50 py-16">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="bg-zinc-50 py-12 sm:py-16">
+        <div className="mx-auto max-w-7xl px-5 sm:px-6">
 
-          <div className="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+          <div className="mb-8 flex flex-col gap-2 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-sm font-bold uppercase tracking-widest text-blue-600">
+              <p className="text-xs font-bold uppercase tracking-widest text-blue-600 sm:text-sm">
                 Produsele noastre
               </p>
 
-              <h2 className="mt-2 text-3xl font-bold">
+              <h2 className="mt-2 text-2xl font-bold sm:text-3xl">
                 {selectedCategory === "Toate"
                   ? "Catalog complet"
                   : selectedCategory}
@@ -366,38 +396,39 @@ export default function ProdusePage() {
             </div>
 
             <p className="text-sm text-zinc-500">
-              {filteredProducts.length} produse găsite
+              {filteredProducts.length}{" "}
+              {filteredProducts.length === 1 ? "produs găsit" : "produse găsite"}
             </p>
           </div>
 
           {filteredProducts.length > 0 ? (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
               {filteredProducts.map((product, index) => (
                 <article
                   key={product.name}
-                  className="group overflow-hidden rounded-2xl border border-zinc-200 bg-white transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white transition duration-300 hover:-translate-y-1 hover:shadow-xl"
                 >
 
-                  {/* IMAGINE PRODUS */}
-                  <div className="relative h-56 overflow-hidden bg-white">
-                  <Image
-  src={product.image}
-  alt={product.name}
-  width={600}
-  height={450}
-  loading={index === 0 ? "eager" : "lazy"}
-  fetchPriority={index === 0 ? "high" : "auto"}
-  className="h-full w-full object-contain transition duration-500 group-hover:scale-105"
-/>
+                  {/* IMAGINE */}
+                  <div className="relative h-52 overflow-hidden bg-white sm:h-56">
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      width={600}
+                      height={450}
+                      loading={index === 0 ? "eager" : "lazy"}
+                      fetchPriority={index === 0 ? "high" : "auto"}
+                      className="h-full w-full object-contain p-4 transition duration-500 group-hover:scale-105"
+                    />
 
                     {product.badge && (
                       <span
-                        className={`absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-bold ${
+                        className={`absolute left-3 top-3 rounded-full px-3 py-1.5 text-xs font-bold ${
                           product.badge === "Ofertă"
                             ? "bg-red-500 text-white"
                             : product.badge === "Nou"
-                            ? "bg-blue-600 text-white"
-                            : "bg-zinc-950 text-white"
+                              ? "bg-blue-600 text-white"
+                              : "bg-zinc-950 text-white"
                         }`}
                       >
                         {product.badge}
@@ -405,57 +436,55 @@ export default function ProdusePage() {
                     )}
                   </div>
 
-                  {/* INFORMAȚII */}
-                  <div className="p-5">
-
-                    <p className="text-xs font-semibold uppercase tracking-wider text-blue-600">
+                  {/* CONTENT */}
+                  <div className="flex flex-1 flex-col p-5">
+                    <p className="text-xs font-bold uppercase tracking-wider text-blue-600">
                       {product.category}
                     </p>
 
-                    <h3 className="mt-2 text-lg font-bold">
+                    <h3 className="mt-2 text-lg font-bold leading-snug">
                       {product.name}
                     </h3>
 
-                    <p className="mt-3 min-h-[48px] text-sm leading-6 text-zinc-600">
+                    <p className="mt-3 flex-1 text-sm leading-6 text-zinc-600">
                       {product.description}
                     </p>
 
-                    <div className="mt-5 flex items-end gap-2">
+                    <div className="mt-5 flex flex-wrap items-end gap-2">
                       <span className="text-xl font-bold text-zinc-950">
                         {product.price}
                       </span>
 
                       {product.oldPrice && (
-                        <span className="text-sm text-zinc-400 line-through">
+                        <span className="mb-0.5 text-sm text-zinc-400 line-through">
                           {product.oldPrice}
                         </span>
                       )}
                     </div>
 
-                    <button className="mt-5 w-full rounded-xl bg-zinc-900 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-600">
-                      Vezi produsul
-                    </button>
-
+                    <a
+                      href="/contact"
+                      className="mt-5 flex w-full items-center justify-center rounded-xl bg-zinc-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-600"
+                    >
+                      Solicită produsul
+                    </a>
                   </div>
                 </article>
               ))}
             </div>
           ) : (
-            <div className="rounded-3xl border border-zinc-200 bg-white px-6 py-20 text-center">
-
+            <div className="rounded-3xl border border-zinc-200 bg-white px-5 py-16 text-center sm:px-6 sm:py-20">
               <h3 className="text-2xl font-bold">
                 Nu am găsit produsul
               </h3>
 
-              <p className="mt-3 text-zinc-500">
-                Încearcă un alt termen de căutare sau selectează altă categorie.
+              <p className="mx-auto mt-3 max-w-lg leading-7 text-zinc-500">
+                Încearcă un alt termen de căutare sau selectează o altă categorie.
               </p>
 
               <button
-                onClick={() => {
-                  setSearch("");
-                  setSelectedCategory("Toate");
-                }}
+                type="button"
+                onClick={resetFilters}
                 className="mt-6 rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700"
               >
                 Resetează filtrele
@@ -467,19 +496,19 @@ export default function ProdusePage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-blue-600 py-16 text-white">
-        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 px-6 md:flex-row md:items-center">
+      <section className="bg-blue-600 py-14 text-white sm:py-16">
+        <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 sm:px-6 md:flex-row md:items-center md:justify-between">
 
           <div>
-            <p className="text-sm font-bold uppercase tracking-widest text-blue-100">
+            <p className="text-xs font-bold uppercase tracking-widest text-blue-100 sm:text-sm">
               Ai nevoie de mai multe produse?
             </p>
 
-            <h2 className="mt-3 text-3xl font-bold md:text-4xl">
+            <h2 className="mt-3 text-3xl font-bold leading-tight md:text-4xl">
               Soluții pentru firme și comenzi mari
             </h2>
 
-            <p className="mt-4 max-w-xl text-blue-100">
+            <p className="mt-4 max-w-xl leading-7 text-blue-100">
               Pentru companii și instituții putem pregăti pachete
               personalizate în funcție de necesități.
             </p>
@@ -487,7 +516,7 @@ export default function ProdusePage() {
 
           <a
             href="/contact"
-            className="inline-flex rounded-xl bg-white px-6 py-3.5 font-semibold text-zinc-950 transition hover:bg-zinc-950 hover:text-white"
+            className="inline-flex shrink-0 items-center justify-center rounded-xl bg-white px-6 py-3.5 font-semibold text-zinc-950 transition hover:bg-zinc-950 hover:text-white"
           >
             Cere o ofertă →
           </a>
