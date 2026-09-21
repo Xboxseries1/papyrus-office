@@ -1,0 +1,9 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#F4F4F5"/>
+  <rect x="250" y="150" width="300" height="300" rx="32" fill="white"/>
+  <path d="M330 385L390 315L435 360L470 320L530 385H330Z" fill="#E4E4E7"/>
+  <circle cx="380" cy="255" r="35" fill="#DBEAFE"/>
+  <text x="400" y="500" text-anchor="middle" fill="#71717A" font-family="Arial" font-size="24">
+    PAPYRUS OFFICE
+  </text>
+</svg>
